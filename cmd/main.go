@@ -23,7 +23,7 @@ func main() {
 	//camada usecase
 	ProductUseCase := usecase.NewProductUseCase(ProductRespository)
 	//Camada de controllers
-	productController := controller.NewProductController(ProductUseCase)
+	ProductController := controller.NewProductController(ProductUseCase)
 
 	server.GET("/ping", func(ctx *gin.Context) {
 		ctx.JSON(200, gin.H{
@@ -31,8 +31,7 @@ func main() {
 		})
 	})
 
-	server.GET("/products", productController.GetProducts)
-
+	server.GET("/products", ProductController.GetProducts)
 	server.Run(":8000")
 
 }

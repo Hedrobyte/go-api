@@ -7,17 +7,17 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type productController struct {
+type ProductController struct {
 	productUseCase usecase.ProductUsecase
 }
 
-func NewProductController(usecase usecase.ProductUsecase) productController {
-	return productController{
+func NewProductController(usecase usecase.ProductUsecase) ProductController {
+	return ProductController{
 		productUseCase: usecase,
 	}
 }
 
-func (p *productController) GetProducts(ctx *gin.Context) {
+func (p *ProductController) GetProducts(ctx *gin.Context) {
 
 	products, err := p.productUseCase.GetProducts()
 	if err != nil {
