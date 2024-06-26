@@ -6,17 +6,17 @@ import (
 	"go-api/model"
 )
 
-type ProductRespository struct {
+type ProductRepository struct {
 	connection *sql.DB
 }
 
-func NewProductRespository(connection *sql.DB) ProductRespository {
-	return ProductRespository{
+func NewProductRespository(connection *sql.DB) ProductRepository {
+	return ProductRepository{
 		connection: connection,
 	}
 }
 
-func (pr *ProductRespository) GetProducts() ([]model.Product, error) {
+func (pr *ProductRepository) GetProducts() ([]model.Product, error) {
 
 	query := "SELECT id, product_name, price FROM product"
 	rows, err := pr.connection.Query(query)
@@ -47,7 +47,7 @@ func (pr *ProductRespository) GetProducts() ([]model.Product, error) {
 	return productList, nil
 }
 
-func (pr *ProductRespository) CreateProduct(product model.Product) (int, error) {
+func (pr *ProductRepository) CreateProduct(product model.Product) (int, error) {
 
 	var id int
 	query, err := pr.connection.Prepare("INSERT INTO product" +
